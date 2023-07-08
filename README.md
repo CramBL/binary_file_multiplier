@@ -1,4 +1,4 @@
-# Binary File Multiplier
+# binmult - Binary File Multiplier
 Copy and append content from raw data files without mutating any contents
 
 ## Purpose

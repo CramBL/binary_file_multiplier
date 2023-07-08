@@ -52,7 +52,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "binary_file_multiplier"
+name = "binmult"
 version = "0.1.0"
 dependencies = [
  "clap",

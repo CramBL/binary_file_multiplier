@@ -1,5 +1,5 @@
 [package]
-name = "binary_file_multiplier"
+name = "binmult"
 version = "0.1.0"
 edition = "2021"
 readme = "README.md"
