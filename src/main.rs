@@ -1,5 +1,39 @@
 use std::fs::File;
 use std::io::{self, Read, Write};
+use std::path::PathBuf;
+
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+#[command(
+    name = "binmult - Copy and append content from raw data files without mutating any contents"
+)]
+#[command(bin_name = "binmult", version)]
+#[command(author = "Marc König <mbkj@tutamail.com>")]
+#[command(
+    about = "binmult takes a file as an input and creates a new file with as many appended copies of the input file as requested"
+)]
+#[command(
+    long_about = "\nbinmult takes a file as an input and creates a new file with as many appended copies of the input file as requested.\n\
+useful for my need of large files for benchmarking in CI pipelines without downloading external content.\n\
+\n\
+Project home page: TBD"
+)]
+pub struct Cfg {
+    /// Input file.
+    #[arg(name = "Input data", required = true)]
+    file_in: PathBuf,
+
+    /// Output file.
+    #[arg(
+        name = "Output Data",
+        short = 'o',
+        long = "output",
+        visible_alias = "out",
+        required = true
+    )]
+    file_out: PathBuf,
+}
 
 fn read_binary_file(path: &str) -> io::Result<Vec<u8>> {
     let mut file = File::open(path)?;
@@ -15,10 +49,12 @@ fn write_binary_file(path: &str, data: &[u8]) -> io::Result<()> {
 }
 
 fn main() {
-    let input_path = r"..\fastpasta\tests\test-data\10_rdh.raw";
-    let output_path = r"..\fastpasta\tests\test-data\tmp\tmp_10_rdh.raw";
+    let config = Cfg::parse();
 
-    match read_binary_file(input_path) {
+    let input_path = config.file_in;
+    let output_path = config.file_out;
+
+    match read_binary_file(input_path.to_str().unwrap()) {
         Ok(bytes) => {
             println!("Read {} bytes from the file.", bytes.len());
 
@@ -35,7 +71,7 @@ fn main() {
                 bytes_100_mb.extend_from_slice(&bytes);
             }
 
-            match write_binary_file(output_path, &bytes_100_mb) {
+            match write_binary_file(output_path.to_str().unwrap(), &bytes_100_mb) {
                 Ok(_) => {
                     println!(
                         "Successfully wrote {} bytes to the output file.",
