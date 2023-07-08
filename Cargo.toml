@@ -2,6 +2,17 @@
 name = "binary_file_multiplier"
 version = "0.1.0"
 edition = "2021"
+readme = "README.md"
+repository = "todo"
+license = "MIT OR Apache-2.0"
+keywords = ["CLI", "CI", "tool"]
+description = "Copy and append content from raw data files without mutating any contents"
+categories = ["command-line-utilities"]
+authors = ["Marc Beck König <mbkj@tutamail.com>"]
+
+[badges]
+maintenance = { status = "passively-maintained" }
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
