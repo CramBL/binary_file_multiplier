@@ -1,4 +1,5 @@
 # Binary File Multiplier
+Copy and append content from raw data files without mutating any contents
 
 ## Purpose
 >Stop me from banging my head against the wall that is my ineffecient shell scripts.
