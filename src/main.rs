@@ -48,43 +48,25 @@ fn write_binary_file(path: &str, data: &[u8]) -> io::Result<()> {
     Ok(())
 }
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = Cfg::parse();
 
     let input_path = config.file_in;
     let output_path = config.file_out;
 
-    match read_binary_file(input_path.to_str().unwrap()) {
-        Ok(bytes) => {
-            println!("Read {} bytes from the file.", bytes.len());
+    let contents = read_binary_file(input_path.to_str().unwrap())?;
 
-            let size = bytes.len();
+    let size = contents.len();
 
-            // How many to make 100 MB?
-            let duplication_factor = 1024 * 1024 * 100 / size;
+    // How many to make 100 MB?
+    let duplication_factor = 1024 * 1024 * 100 / size;
+    let mut bytes_100_mb: Vec<u8> = std::vec::Vec::with_capacity(1024 * 1024 * 100);
 
-            println!("Duplicates required for 100 MB = {} x", duplication_factor);
-
-            let mut bytes_100_mb: Vec<u8> = std::vec::Vec::with_capacity(1024 * 1024 * 100);
-
-            for _ in 0..duplication_factor {
-                bytes_100_mb.extend_from_slice(&bytes);
-            }
-
-            match write_binary_file(output_path.to_str().unwrap(), &bytes_100_mb) {
-                Ok(_) => {
-                    println!(
-                        "Successfully wrote {} bytes to the output file.",
-                        bytes_100_mb.len()
-                    );
-                }
-                Err(err) => {
-                    eprintln!("Error writing file: {}", err);
-                }
-            }
-        }
-        Err(err) => {
-            eprintln!("Error reading file: {}", err);
-        }
+    for _ in 0..duplication_factor {
+        bytes_100_mb.extend_from_slice(&contents);
     }
+
+    write_binary_file(output_path.to_str().unwrap(), &bytes_100_mb)?;
+
+    Ok(())
 }
