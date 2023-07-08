@@ -17,7 +17,7 @@ use clap::Parser;
     long_about = "\nbinmult takes a file as an input and creates a new file with as many appended copies of the input file as requested.\n\
 useful for my need of large files for benchmarking in CI pipelines without downloading external content.\n\
 \n\
-Project home page: TBD"
+Project home page: https://github.com/CramBL/binary_file_multiplier"
 )]
 pub struct Cfg {
     /// Input file.
