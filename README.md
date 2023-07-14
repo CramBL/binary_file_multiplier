@@ -1,3 +1,11 @@
+![example workflow](https://github.com/crambl/binary_file_multiplier/actions/workflows/github-ci.yml/badge.svg)
+![rust-badge](https://img.shields.io/github/license/crambl/binary_file_multiplier.svg)
+![issues-badge](https://img.shields.io/github/issues/crambl/binary_file_multiplier.svg)
+![pr-badge](https://img.shields.io/github/issues-pr/crambl/binary_file_multiplier.svg)
+![stars-badge](https://img.shields.io/github/stars/crambl/binary_file_multiplier.svg)
+![forks-bade](https://img.shields.io/github/forks/crambl/binary_file_multiplier.svg)
+
+
 # binmult - Binary File Multiplier
 Copy and append content from raw data files without mutating any contents
 
@@ -23,3 +31,6 @@ Duplicate a file up to the closest (rounded down) multiple of 100 MiB
 # Any size input duplicated up to 100 MiB (rounded down)
 $ binmult input.raw --size 100 -o out.raw
 ```
+
+## Joke
+![Jokes Card](https://readme-jokes.vercel.app/api)
