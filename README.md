@@ -1,10 +1,11 @@
 ![example workflow](https://github.com/crambl/binary_file_multiplier/actions/workflows/github-ci.yml/badge.svg)
 ![rust-badge](https://img.shields.io/github/license/crambl/binary_file_multiplier.svg)
+![Crates.io](https://img.shields.io/crates/d/binmult)
 ![issues-badge](https://img.shields.io/github/issues/crambl/binary_file_multiplier.svg)
 ![pr-badge](https://img.shields.io/github/issues-pr/crambl/binary_file_multiplier.svg)
 ![stars-badge](https://img.shields.io/github/stars/crambl/binary_file_multiplier.svg)
 ![forks-bade](https://img.shields.io/github/forks/crambl/binary_file_multiplier.svg)
-
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/crambl/binary_file_multiplier)
 
 # binmult - Binary File Multiplier
 Copy and append content from raw data files without mutating any contents
