@@ -2,7 +2,17 @@ use std::fs::File;
 use std::io::{self, Read, Write};
 use std::path::PathBuf;
 
+use clap::builder::styling::{AnsiColor, Effects, Styles};
 use clap::Parser;
+
+// Styles for the help message
+fn styles() -> Styles {
+    Styles::styled()
+        .header(AnsiColor::Red.on_default() | Effects::BOLD)
+        .usage(AnsiColor::Yellow.on_default() | Effects::BOLD)
+        .literal(AnsiColor::Green.on_default() | Effects::BOLD)
+        .placeholder(AnsiColor::Blue.on_default())
+}
 
 #[derive(Parser, Debug)]
 #[command(
@@ -19,6 +29,7 @@ useful for my need of large files for benchmarking in CI pipelines without downl
 \n\
 Project home page: https://github.com/CramBL/binary_file_multiplier"
 )]
+#[command(styles = styles())]
 pub struct Cfg {
     /// Input file.
     #[arg(name = "Input data", required = true)]
